@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Title of the document</title>
+</head>
+
+<style type="text/css">
+@font-face {
+  font-family: "MyBerlinXBold";
+  src: url("berlin.x-bold.ttf");
+}
+body {
+	color: white;
+	background-image: url(https://raw.githubusercontent.com/Pidlik/SloganViewer/master/FoxberryLogo_big.png);
+  font-family: "MyBerlinXBold";
+	font-size: 96px;
+}
+#WindDir{
+	font-size: 48px;
+	color: red;
+}
+#Temp{
+	color: lightblue;
+}
+#Wind{
+	color: lightgreen;
+}
+</style>
+<script src="getTemp.js"></script>
+<body>
+
+<p id="Temp"></p>
+<p id="Wind"></p>
+<p id="WindDir"></p>
+
+<script type="text/javascript">document.getElementById("Temp").innerHTML = getTemp()</script>
+<script type="text/javascript">document.getElementById("Wind").innerHTML = getWind()</script>
+<script type="text/javascript">document.getElementById("WindDir").innerHTML = getWDir()</script>
+</body>
+
+</html> 

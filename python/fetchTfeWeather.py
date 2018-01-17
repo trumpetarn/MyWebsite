@@ -101,15 +101,12 @@ def get_sun(data,elem=1):
 		suns.append(float(sun[i].text))
 	return suns
 
+def create_js(data):
+	print("function getTemp() { return '" + str(get_temp(data)) + "\u00B0C'}")
+	wind,deg = get_wind(data)
+	print("function getWind() { return '" + str(wind) + "' }")
+	print("function getWDir() { return '" + str(wind_direction(deg)) + "' }")
 
 
-
-data = fetch_tfe_data(True)
-print(get_temp(data,3), '*C')
-v,d = get_wind(data,10)
-print(v,d)
-print(wind_direction(d))
-print(get_rain(data))
-print(get_pressure(data))
-print(get_date(data))
-print(get_sun(data, 5))
+data = fetch_tfe_data(False)
+create_js(data)
