@@ -101,12 +101,62 @@ def get_sun(data,elem=1):
 		suns.append(float(sun[i].text))
 	return suns
 
-def create_js(data):
-	print("function getTemp() { return '" + str(get_temp(data)) + "\u00B0C'}")
-	wind,deg = get_wind(data)
-	print("function getWind() { return '" + str(wind) + "' }")
-	print("function getWDir() { return '" + str(wind_direction(deg)) + "' }")
+def generate_html(filename="../html/index.html", debug=False):
+	file = open(filename,"w")
+	data = fetch_tfe_data(debug)
+	vel,rikt = get_wind(data)
+	temp = get_temp(data)
+	html = """
+<!DOCTYPE html>
+<!-- 
+This document was created by a python script
+Data is from TFE @ Umea University: http://www8.tfe.umu.se/weather-new/
+-->
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Foxberry weather</title>
+  <meta charset="UTF-8">
+  <style>
+  :root {{
+  --wind-dir: rotate({}deg);
+	}}
+	</style>
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<div class="compass">
+  <div id="rose" class="compass__rose">
 
+	  <svg class="compass__rose__dial" viewBox="0 0 130 130" version="1.1" xmlns="http://www.w3.org/2000/svg">
 
-data = fetch_tfe_data(False)
-create_js(data)
+		  <circle cx="65" cy="65" r="56" stroke="white" stroke-width="1" fill="none" />
+		  <polyline points="63,9  67,9  65,13" fill="white"/>
+		  <polyline points="121,63  121,67  119,65" fill="white"/>
+		  <polyline points="63,121  67,121  65,119" fill="white"/>
+		  <polyline points="9,63  9,67  11,65" fill="white"/>
+
+		  <text x="65" y="20" font-size="10" text-anchor="middle" fill="white">N</text>
+		  <text x="114" y="68" font-size="10" text-anchor="middle" fill="white">E</text>
+		  <text x="65" y="118" font-size="10" text-anchor="middle" fill="white">S</text>
+		  <text x="17" y="68" font-size="10" text-anchor="middle" fill="white">W</text>
+
+	  </svg>
+	  <p class="compass__wind">{} m/s</p>
+  </div>
+  <svg class="compass__pointer" viewBox="0 0 130 130" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <polyline points="60,60  70,60  65,15" fill="#b60000"/>
+    <polyline points="60,70  70,70  65,115" fill="white"/>
+    <circle cx="65" cy="65" r="7" stroke="#b60000" stroke-width="7" fill="none" />
+  </svg>
+	<p class="compass__temp">{}°C</p>
+</div>
+</body>
+</html> 
+""".format(rikt+180, round(vel,1), round(temp,1))
+	if debug:
+		print(html)
+	file.write(html)
+	file.close()
+
+generate_html()
