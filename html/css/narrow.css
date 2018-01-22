@@ -4,25 +4,26 @@
 }
 html {
   color: white;
-  background-image: url(https://raw.githubusercontent.com/Pidlik/SloganViewer/master/FoxberryLogo_big.png);
+  background-image: url("FoxberryLogo_narrow.png");
+  /*background-position: /*right 1000px bottom 150px;*/
   font-family: "Helvetica";
   font-weight: bold;
   font-size: 96px;
-  height: 90%;
+  height: 100%;
 }
 
 body {
   padding: 0;
   margin: 0;
-  height: 100%;
+  height: 1079px;
+  width: 607px
 }
 
 .compass {
   position: absolute;
-  left: 1000px;
-  top: 550px;
-  width: 384px;
-  height: 216px;
+  top: 200px;
+  width: 607px;
+  height: 200px;
   text-align: center;
 }
   .compass__rose {
@@ -55,8 +56,26 @@ body {
 
   .compass__temp {
     color: white;
-    font-size: 128px;
+    font-size: 96px;
     position: absolute;
-    top: -110px;
-    right: 300px;
+    bottom: 40%;
+    left: 0;
+    right: 0;
   }
+
+/* To be updated and added later */
+.forecast {
+  position: absolute;
+  font-size: 24px;
+  height: 40px;
+  top: 690px;
+  left: 840px;
+}
+
+.forecast__table {
+  border-collapse: collapse;
+  border: 0px;
+}
+.forecast__img {
+  width: 50px;
+}

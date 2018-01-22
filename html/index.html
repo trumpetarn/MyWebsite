@@ -1,0 +1,49 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<!-- 
+Temp: -16.8</br>
+Wind: 0.9</br>
+Dir: 502</br>
+WeatherData was last updated: January 22 2018 18:24:16.
+--><meta charset="UTF-8">
+<title>Foxberry weather</title>
+  <meta charset="UTF-8">
+  <style>
+  :root {
+  --wind-dir: rotate(502deg);
+	}
+	</style>
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<div class="compass">
+  <div id="rose" class="compass__rose">
+
+	  <svg class="compass__rose__dial" viewBox="0 0 130 130" version="1.1" xmlns="http://www.w3.org/2000/svg">
+
+		  <circle cx="65" cy="65" r="56" stroke="white" stroke-width="1" fill="none" />
+		  <polyline points="63,9  67,9  65,13" fill="white"/>
+		  <polyline points="121,63  121,67  119,65" fill="white"/>
+		  <polyline points="63,121  67,121  65,119" fill="white"/>
+		  <polyline points="9,63  9,67  11,65" fill="white"/>
+
+		  <text x="65" y="20" font-size="10" text-anchor="middle" fill="white">N</text>
+		  <text x="114" y="68" font-size="10" text-anchor="middle" fill="white">E</text>
+		  <text x="65" y="118" font-size="10" text-anchor="middle" fill="white">S</text>
+		  <text x="17" y="68" font-size="10" text-anchor="middle" fill="white">W</text>
+
+	  </svg>
+	  <p class="compass__wind">0.9 m/s</p>
+  </div>
+  <svg class="compass__pointer" viewBox="0 0 130 130" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <polyline points="60,60  70,60  65,15" fill="#b60000"/>
+    <polyline points="60,70  70,70  65,115" fill="white"/>
+    <circle cx="65" cy="65" r="7" stroke="#b60000" stroke-width="7" fill="none" />
+  </svg>
+	<p class="compass__temp">-16.8°C</p>
+</div>
+</body>
+</html> 
