@@ -25,38 +25,44 @@ body {
   height: 216px;
   text-align: center;
 }
-  .compass__rose {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-  }
+.compass__rose {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
 
-  .compass__rose__dial {
-    height: 90%;
-    width: 90%;
-  }
+.compass__rose__dial {
+  height: 90%;
+  width: 90%;
+}
 
-  .compass__pointer {
-    height: 90%;
-    width: 90%;
-    transform: var(--wind-dir);
-  }
+.compass__pointer {
+  height: 90%;
+  width: 90%;
+  transform: var(--wind-dir);
+}
 
-  .compass__wind {
-    color: white;
-    font-size: 32px;
-    position: absolute;
-    top: 70%;
-    left: 0;
-    right: 0;
-  }
+.compass__wind {
+  color: white;
+  font-size: 32px;
+  position: absolute;
+  top: 70%;
+  left: 0;
+  right: 0;
+}
 
-  .compass__temp {
-    color: white;
-    font-size: 128px;
-    position: absolute;
-    top: -110px;
-    right: 300px;
-  }
+.compass__temp {
+  color: white;
+  font-size: 128px;
+  position: absolute;
+  top: -110px;
+  right: 300px;
+}
+
+.yr_script {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
