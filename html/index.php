@@ -45,23 +45,33 @@ echo "-->";
 <meta charset="UTF-8">
 <title>Foxberry weather</title>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script type="text/javascript" src="jquery.min.js"></script>
+  <script type="text/javascript" src="jquery-ui.min.js"></script>
   <style>
-  :root {
-  --wind-dir: rotate(<?php echo $dir,"deg";?>);
-	}
-	</style>
+  #draggable { width: 10px; height: 10px; background-color: rgba(255, 0, 0, 0); border-style: hidden; position: absolute; top: 10px; left: 10px;}
+  #draggable p { cursor: move; font-size: 12px;background-color: rgba(255, 0, 0, 0); }
+  </style>
   <link rel="stylesheet" href="css/app.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
   <script type="text/javascript">
     $( function() {
-      $( "#draggable" ).draggable();
-    } );
+    $( "#draggable" ).draggable({ handle: "p" });
+    $( "div, p" ).disableSelection();
+  } );
   </script>
+  <style>
+  :root {
+  --wind-dir: rotate(476deg);
+  }
+  </style>
 </head>
 <body>
-<div id="draggable" class="yr_script">
+<div id="draggable" class="ui-widget-content">
+  <p class="ui-widget-header">x</p>
+  <div class="yr_script">
   <script src="https://www.yr.no/place/Sweden/Västerbotten/Umeå/external_box_three_days.js"></script><noscript><a href="https://www.yr.no/place/Sweden/Västerbotten/Umeå/">yr.no: Forecast for Umeå</a></noscript>
+</div>
 </div>
 <div class="compass">
   <div id="rose" class="compass__rose">
