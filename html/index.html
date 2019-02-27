@@ -20,10 +20,19 @@ WeatherData was last updated: February 26 2019 13:14:37.
   <link rel="stylesheet" href="css/app.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
   <script type="text/javascript">
-    $( function() {
-    $( "#draggable" ).draggable({ handle: "p" });
-    $( "div, p" ).disableSelection();
-  } );
+    var sPositions = localStorage.positions || "{}",
+    positions = JSON.parse(sPositions);
+$.each(positions, function (id, pos) {
+    $("#" + id).css(pos)
+})
+$("#draggable").draggable({
+    containment: "#containment-wrapper",
+    scroll: false,
+    stop: function (event, ui) {
+        positions[this.id] = ui.position
+        localStorage.positions = JSON.stringify(positions)
+    }
+});
   </script>
   <style>
 	:root {
@@ -32,10 +41,12 @@ WeatherData was last updated: February 26 2019 13:14:37.
   </style>
 </head>
 <body>
+<div id= "containment-wrapper">
 <div id="draggable" class="ui-widget-content">
   <p class="ui-widget-header">x</p>
   <div class="yr_script">
   <script src="https://www.yr.no/place/Sweden/Västerbotten/Umeå/external_box_three_days.js"></script><noscript><a href="https://www.yr.no/place/Sweden/Västerbotten/Umeå/">yr.no: Forecast for Umeå</a></noscript>
+</div>
 </div>
 </div>
 <div class="compass">
