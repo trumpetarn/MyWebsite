@@ -2,47 +2,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<?php
-echo "<!-- \n";
-$filename = "weatherdata.txt";
-// Check if we fetchd data in the last 20 minutes
-if (file_exists($filename) and ((time()-filemtime($filename)) < (20*60))) {
-  $myfile = fopen($filename, "r") or die("Unable to open file!");
-  $line = fgets($myfile);
-  fclose($myfile);
-  $csv = str_getcsv($line);
-  $temp = number_format(round(floatval($csv[0]),1),1);
-  $wind = number_format(round(floatval($csv[1]),1),1);
-  $dir = intval($csv[2])+180;
-  echo "Temp: ",$temp,"</br>\n";
-  echo "Wind: ",$wind,"</br>\n";
-  echo "Dir: ",$dir,"</br>\n";
-  echo "WeatherData was last updated: " . date ("F d Y H:i:s.", filemtime($filename)), "\n";
-} else {
-  $xml_temp=simplexml_load_file("http://www8.tfe.umu.se/vadertjanst/service1.asmx/Temp") or die("Error: Cannot reach Temp");
-  $xml_wind=simplexml_load_file("http://www8.tfe.umu.se/vadertjanst/service1.asmx/Vindhastighet") or die("Error: Cannot reach Wind");
-  $xml_dir=simplexml_load_file("http://www8.tfe.umu.se/vadertjanst/service1.asmx/Vindriktning") or die("Error: Cannot reach Dir");
-  $temp = number_format(round(floatval($xml_temp),1),1);
-  $wind = number_format(round(floatval($xml_wind),1),1);
-  $dir = intval($xml_dir)+180;
-  echo "Temp: ",$temp,"</br>\n";
-  echo "Wind: ",$wind,"</br>\n";
-  echo "Dir: ",$dir,"</br>\n";
-  
-  $del = ',';
-  $myfile = fopen($filename, "w") or die("Unable to open file!");
-  fwrite($myfile, $xml_temp);
-  fwrite($myfile, $del);
-  fwrite($myfile, $xml_wind);
-  fwrite($myfile, $del);
-  fwrite($myfile, $xml_dir);
-  fwrite($myfile, $del);
-  fclose($myfile);
-  echo "WeatherData was last updated: " . date ("F d Y H:i:s.", time($filename)), "\n";
-}
-echo "-->";
-?>
-<meta charset="UTF-8">
+<!-- 
+Temp: 10.5</br>
+Wind: 2.3</br>
+Dir: 435</br>
+WeatherData was last updated: September 14 2020 18:54:32.
+--><meta charset="UTF-8">
 <title>Foxberry weather</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -127,17 +92,18 @@ echo "-->";
 		  <text x="17" y="68" font-size="10" text-anchor="middle" fill="white">W</text>
 
 	  </svg>
-	  <p class="compass__wind"><?php echo $wind;?> m/s</p>
+	  <p class="compass__wind">2.3 m/s</p>
   </div>
   <svg class="compass__pointer" viewBox="0 0 130 130" version="1.1" xmlns="http://www.w3.org/2000/svg">
     <polyline points="60,60  70,60  65,15" fill="#b60000"/>
     <polyline points="60,70  70,70  65,115" fill="white"/>
     <circle cx="65" cy="65" r="7" stroke="#b60000" stroke-width="7" fill="none" />
   </svg>
-	<p class="compass__temp"><?php echo $temp;?>°C</p>
+	<p class="compass__temp">10.5°C</p>
   <div class="time__clock" id="timeClock"></div>
   <div class="time__date" id="timeDayAndWeek"></div>
 </div>
+<div class="yr__credit">«Weather forecast from Yr, delivered by the Norwegian Meteorological Institute and NRK»</div>
 </body>
 </html> 
 

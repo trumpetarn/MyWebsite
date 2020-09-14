@@ -67,5 +67,20 @@ body {
   left: 10px;
 }
 
+.time__date {
+  color: grey;
+  font-size: 36px;
+  position: absolute;
+  top: 138px;
+  left: -300px;
+  text-align: right;
+}
 
-
+.time__clock {
+  color: white;
+  font-size: 64px;
+  position: absolute;
+  top: 168px;
+  left: -320px;
+  text-align: left;
+}
